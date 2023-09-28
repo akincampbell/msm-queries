@@ -3,6 +3,12 @@ class DirectorsController < ApplicationController
     render({ :template => "director_templates/list"})
   end
 
+  def eldest
+    @oldest = Director.order(:dob).first.name
+
+    render({ :template => "director_templates/eldest"})
+  end
+
   def show
     the_id = params.fetch("the_id")
 
@@ -11,4 +17,11 @@ class DirectorsController < ApplicationController
     
     render({ :template => "director_templates/details"})
   end
+
+  def youngest
+    @youngest = Director.order(:dob).last.name
+
+    render({ :template => "director_templates/youngest"})
+  end
+
 end
